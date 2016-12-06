@@ -53,6 +53,7 @@ def index():
     #   current_price: The current value of our lowest bid (pre-computed based on the current time)
     #   rate_of_decrease: The amount of milliseconds that this price should decrease by 1 cent
     #   time_left: The amount of milliseconds that this guestmeal is still available
+    #   guestmeal_id: The uid of the seller associated with this particular guestmeal being sold
 
     lowest_price = database.get_active_lowest_price()
 
@@ -76,6 +77,8 @@ def buy():
     #   current_price: The current value of our lowest bid (pre-computed based on the current time)
     #   rate_of_decrease: The amount of milliseconds that this price should decrease by 1 cent
     #   time_left: The amount of milliseconds that this guestmeal is still available
+    #   guestmeal_id: The uid of the seller associated with this particular guestmeal being sold
+    #   seller: The first name of the seller associated with this guestmeal (Displayed below price on this route)
 
     lowest_price = database.get_active_lowest_price()
 
