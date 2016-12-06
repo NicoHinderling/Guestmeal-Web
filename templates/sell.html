@@ -1,0 +1,86 @@
+<html>
+<head>
+    <title> Guestmealme, Buy and Sell Guestmeals </title>
+    {% include "partials/head.html" %}
+</head>
+
+<body>
+    <section class="navigation">
+        <div class="nav-container">
+            <a href="/">
+                <div class="navbar-brand">
+                    <img src="/public/img/guestmeal-logo.png" class="navbar-brand-logo">
+                    <h4 class="navbar-brand-name">Guestmeal me</h4>
+                </div>
+            </a>
+            <nav>
+                <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="/buy">Buy</a>
+                    </li>
+                    <li>
+                        <a href="/sell">Sell</a>
+                    </li>
+                    <li>
+                        <a href="/dashboard">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Log out</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <section class="home">
+        <div class="dashboard-container">
+            <h1>Sell a Guestmeal:</h1>
+            <div class="title-separator"></div>
+            <div class="sell-container">
+                <div class="selling-explanation">
+                    <h3 class="selling-explanation-title"> How Selling Works: </h3>
+                    <a href="#" class="close-selling-explanation">X</a>
+                    <div class="selling-explanation-content">
+                        <h4>Every Guestmeal: </h4>
+                        <ul>
+                            <li> is available on auction for 24 hours</li>
+                            <li> begins at $10 and slowly decreases over the course of the 24 hours</li>
+                            <li> will be sold to the first buyer who wants it </li>
+                        </ul>
+                        <p> Once a buyer purchases your meal, you will receive their contact information as well as a hold on the payment. Once the transaction is complete, you will receive your payment (<strike> minus our 2% fee</strike> not applied during beta testing!). Lets get started!</p>
+                    </div>
+                </div>
+                <form class="sell-info" method="post" action="/sell">
+                    <h3>What is the minimum price you'd accept for your Guestmeal? (Must be between $0 and $10) </h3>
+                    <div class="min-price-field-container">
+                        <span>$</span><input type="number" name="min-price" min="0" max="10" id="min-price-field"><br>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" id="sell-submit-button" disabled>Start the Auction!</button>
+                </form>
+            </div>
+        </div>
+
+    </section>
+    
+</body>
+
+    <!-- UI RELATED JS -->
+    <script type="text/javascript">
+        $('.close-selling-explanation').on('click', function () {
+            $('.selling-explanation').hide();
+        });
+
+        $('#min-price-field').on('change keyup paste', function() {
+            var price = $('#min-price-field').val();
+            document.getElementById("sell-submit-button").disabled = ((price > 0 && price < 10) ? false : true);
+        })
+
+        if ('{{server_message}}'.length > 0) {
+            $('.server-message-container').html('<div class="bad-server-message-wrapper"><a href="#" class="close-server-message">X</a>'
+                + '<h4 class="server-message">{{server_message}}</h4></div>');
+        }
+        $('.close-server-message').on('click', function () {
+            $('.server-message-container').hide();
+        });
+    </script>
+</html>

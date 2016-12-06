@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <title> Guestmealme, Buy and Sell Guestmeals </title>
+    {% include "partials/head.html" %}
+</head>
+
+<body>
+    <section class="navigation">
+        <div class="nav-container">
+            <a href="/">
+                <div class="navbar-brand">
+                    <img src="/public/img/guestmeal-logo.png" class="navbar-brand-logo">
+                    <h4 class="navbar-brand-name">Guestmeal me</h4>
+                </div>
+            </a>
+            <nav>
+                <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="/about">How it Works</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="auth0-login-button">Sign in</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <section class="home">
+        <video playsinline autoplay muted loop id="bgvid">
+            <source src="/public/mp4/background-video.mp4" type="video/mp4">
+        </video>
+
+        <div class="home-container">
+            <h1>Current Cheapest Price</h1>
+            <div class="current-price"></div>
+            <div class="time-left">Time left: -</div>
+            
+            <a class="btn btn-danger btn-lg home-buy-button">BUY</a>
+        </div>
+
+    </section>
+    
+</body>
+    <!-- AUTH FUNCTIONALITY JS -->
+    <script type="text/javascript">
+        // Preliminary version: Checking if the user is already logged in
+        var userLoggedIn = false;
+    </script>
+
+    <script src="https://cdn.auth0.com/js/lock/10.5/lock.min.js"></script>
+
+    <script>
+    var AUTH0_CLIENT_ID = '{{env.AUTH0_CLIENT_ID}}',
+        AUTH0_DOMAIN = '{{env.AUTH0_DOMAIN}}',
+        AUTH0_CALLBACK_URL = '{{env.AUTH0_CALLBACK_URL}}';
+
+    var GUESTMEAL_CURRENT_PRICE = '{{price.current_price}}',
+        GUESTMEAL_TIME_LEFT = '{{price.time_left}}',
+        GUESTMEAL_RATE_OF_DECREASE = '{{price.rate_of_decrease}}';
+    </script>
+    <script src="/public/js/auth0.js"></script>
+
+    <!-- UI RELATED JS -->
+    <script src="/public/js/buy-panel-ui.js"></script>
+</html>

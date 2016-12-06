@@ -1,0 +1,96 @@
+<html>
+<head>
+    <title> Guestmealme, Buy and Sell Guestmeals </title>
+    {% include "partials/head.html" %}
+</head>
+
+<body>
+    <section class="navigation">
+        <div class="nav-container">
+            <a href="/">
+                <div class="navbar-brand">
+                    <img src="/public/img/guestmeal-logo.png" class="navbar-brand-logo">
+                    <h4 class="navbar-brand-name">Guestmeal me</h4>
+                </div>
+            </a>
+            <nav>
+                <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="/buy">Buy</a>
+                    </li>
+                    <li>
+                        <a href="/sell">Sell</a>
+                    </li>
+                    <li>
+                        <a href="/dashboard">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Log out</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <section class="buy">
+        <br>
+        <div class="server-message-container"></div>
+        <h1 class="buy-title">Buy a Guestmeal</h1>
+        <div class="buy-container">
+            <h1>Current Cheapest Price</h1>
+            <div class="current-price"></div>
+            <div class="guestmeal-seller"></div>
+            <div class="time-left">Time left: -</div>
+            
+            <!-- Form for submitting guestmeal purchase data -->
+            <div id="form">
+                  <form id="buy-form" method="post" action="/buy" enctype='application/json'>        
+                    <input class="btn btn-danger btn-lg buy-button" value="BUY" />
+                    <input type="hidden" name="guestmeal_id" id="guestmeal_id" value=""/>
+                  </form>
+            </div>
+
+        </div>
+        <!-- <h1 class="buy-title">Other Guestmeals on auction</h1> -->
+        <!-- <p>  </p> -->
+    </section>
+
+    
+</body>
+
+    <!-- UI RELATED JS -->
+    <script type="text/javascript">
+        var GUESTMEAL_CURRENT_PRICE = '{{price.current_price}}',
+            GUESTMEAL_TIME_LEFT = '{{price.time_left}}',
+            GUESTMEAL_RATE_OF_DECREASE = '{{price.rate_of_decrease}}',
+            GUESTMEAL_ID = '{{price.guestmeal_id}}';
+            GUESTMEAL_NAME = '{{price.seller}}';
+    </script>
+    <script src="/public/js/buy-panel-ui.js"></script>
+    
+    <script type="text/javascript">
+
+        // Buy Button Logic
+        $('.buy-button').on('click', function() {
+            document.getElementById('guestmeal_id').value = GUESTMEAL_ID;
+            document.forms[0].submit();
+        })
+
+        if ('{{server_message}}'.length > 0) {
+            $('.server-message-container').html('<div class="bad-server-message-wrapper"><a href="#" class="close-server-message">X</a>'
+                + '<h4 class="server-message">{{server_message}}</h4></div>');
+        }
+        $('.close-server-message').on('click', function () {
+            $('.server-message-container').hide();
+        });
+
+
+
+        // FIX FOR RN:
+        if (GUESTMEAL_NAME.length > 0) {
+            $('.guestmeal-seller').html("<h4>Seller: " + GUESTMEAL_NAME + "</h4>");
+        }
+    </script>
+
+
+</html>

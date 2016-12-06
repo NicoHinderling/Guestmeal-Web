@@ -1,0 +1,38 @@
+.dashboard-container {
+    margin: auto;
+    padding: 25px;
+    padding-left: 20%;
+    padding-right: 20%;
+    margin-top: 20px;
+}
+
+.transactions-container {
+    text-align: center;
+}
+
+.transactions-cell {
+    border: 3px solid #696969;
+    border-radius: 8px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.transaction-cell-title {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.transaction-cell-timestamp {
+    margin-top: 10px;
+    margin-right: 10px;
+    float: right;
+}
+
+.transaction-cell-price {
+    margin-left: 30px;
+    margin-top: 5px;
+}

@@ -1,0 +1,241 @@
+// nico: stupid 2 space indent.. make it glorious 4 later ;)
+
+// Navigation Variables
+$content-width: 1000px;
+$breakpoint: 800px;
+$nav-height: 70px;
+$nav-background: #262626;
+$nav-font-color: #ffffff;
+$link-hover-color: #2581DC;
+
+h4
+{
+    font-weight: normal;
+}
+// Outer navigation wrapper
+.navigation {
+  height: $nav-height;
+  background: $nav-background;
+}
+
+// Logo and branding
+.navbar-brand {
+  position: absolute;
+  padding-left: 20px;
+  // line-height: $nav-height;
+  text-transform: uppercase;
+  font-size: 1.4em;
+  padding: 10px 10px 0px 0px;
+  a,
+  a:visited {
+    text-decoration: none;
+  }
+}
+.navbar-brand-logo {
+    float: left;
+    
+    // Guestmeal logo dimensions
+    height: 50px;
+    width: 50px;
+    margin: 0px 10px 0px 0px;
+}
+
+.navbar-brand-name {
+    float: right;
+    color: $nav-font-color;
+    margin-top: 15px;
+}
+
+// Container with no padding for navbar
+.nav-container {
+  max-width: $content-width;
+  margin: 0 auto;
+}
+
+// Navigation 
+nav {
+    float: right;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            float: left;
+            position: relative;
+            cursor: pointer;
+            font-size: 16px;
+
+            a,
+            a:visited {
+                display: block;
+                padding: 0 20px;
+                border-left: 1px solid #4d4d4d;
+
+                line-height: $nav-height;
+                background: $nav-background;
+                color: $nav-font-color;
+                text-decoration: none;
+                
+                &:hover {
+                    background: $link-hover-color;
+                    color: $nav-font-color;
+                }
+            
+                &:not(:only-child):after {
+                    padding-left: 4px;
+                    content: ' ▾';
+                }
+            }
+        }
+        li:last-child a {
+            // border-left: none;
+            border-right: 1px solid #4d4d4d;
+
+        }
+
+    }
+}
+
+/* Mobile navigation */
+
+// Binds to JS Toggle
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: $nav-background;
+  height: $nav-height;
+  width: $nav-height;
+}
+
+@media only screen and (max-width: $breakpoint) {
+  // Hamburger nav visible on mobile only
+  .nav-mobile {
+    display: block;
+  }
+  nav {
+   width: 100%;
+    padding: $nav-height 0 15px;
+    ul {
+      display: none;
+      li {
+        float: none;
+        a {
+          padding: 15px;
+          line-height: 20px;
+        }
+        ul li a {
+          padding-left: 30px;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: $breakpoint) {
+  .nav-list {
+    display: block !important;
+  }
+}
+#nav-toggle {
+  position: absolute;
+  left: 18px;
+  top: 22px;
+  cursor: pointer;
+  padding: 10px 35px 16px 0px;
+  span,
+  span:before,
+  span:after {
+    cursor: pointer;
+    border-radius: 1px;
+    height: 5px;
+    width: 35px;
+    background: $nav-font-color;
+    position: absolute;
+    display: block;
+    content: '';
+    transition: all 300ms ease-in-out;
+  }
+  span:before {
+    top: -10px;
+  }
+  span:after {
+    bottom: -10px;
+  }
+  &.active span {
+    background-color: transparent;
+    &:before,
+    &:after {
+      top: 0;
+    }
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+// Page content 
+article {
+    max-width: $content-width;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.current-price {
+    font-size: 72px;
+}
+
+.time-left {
+    font-size: 24px;
+}
+
+.welcome-header {
+    float: right;
+    margin-right: 25%;
+    margin-top: 25px;
+}
+
+.title-separator {
+    height: 5px;
+    width: 70%;
+    text-align: center;
+    color: #000000;
+}
+
+.server-message {
+    display: inline-block;
+}
+
+.good-server-message-wrapper {
+    background-color: #84e184;
+    padding: 0px 50px 0px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    border: 3px solid #009900;
+}
+
+.bad-server-message-wrapper {
+    background-color: #ff9999;
+    padding: 0px 50px 0px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    border: 3px solid #e60000;
+}
+
+.server-message-container {
+    text-align: center;
+}
+
+.close-server-message,
+.close-server-message:hover {
+    display: inline-block;
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0px 40px 0px 5px;
+}

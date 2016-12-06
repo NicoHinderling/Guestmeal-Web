@@ -1,0 +1,70 @@
+<html>
+<head>
+    <title> Guestmealme, Buy and Sell Guestmeals </title>
+    {% include "partials/head.html" %}
+</head>
+
+<body>
+    <section class="navigation">
+        <div class="nav-container">
+            <a href="/">
+                <div class="navbar-brand">
+                    <img src="/public/img/guestmeal-logo.png" class="navbar-brand-logo">
+                    <h4 class="navbar-brand-name">Guestmeal me</h4>
+                </div>
+            </a>
+            <nav>
+                <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="/buy">Buy</a>
+                    </li>
+                    <li>
+                        <a href="/sell">Sell</a>
+                    </li>
+                    <li>
+                        <a href="/dashboard">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/about">How it works</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Log out</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <section class="home">
+        <h4 class="welcome-header">Hi {{user['user_metadata']['first_name']}}!</h4>
+        <br>
+        <div class="dashboard-container">
+            <div class="server-message-container"></div>
+
+            <h1>Past Transactions</h1>
+            <div class="transactions-container">
+                {% for a in transactions:%}
+                <div class="transactions-cell">
+                    <h3 class="transaction-cell-title"> {{a.transaction_type}}: {{a.name}} </h3>
+                    <h4 class="transaction-cell-timestamp"> {{a.time}} </h4>
+                    <h4 class="transaction-cell-price"> Bought for: ${{a.price}} </h4>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </section>
+    
+</body>
+
+    <!-- UI RELATED JS -->
+    <script type="text/javascript">
+        if ('{{server_message}}'.length > 0) {
+            $('.server-message-container').html('<div class="good-server-message-wrapper"><a href="#" class="close-server-message">X</a>'
+                + '<h4 class="server-message">{{server_message}}</h4></div>');
+        }
+        $('.close-server-message').on('click', function () {
+            $('.server-message-container').hide();
+        });
+    </script>
+</html>

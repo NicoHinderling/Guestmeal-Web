@@ -1,0 +1,49 @@
+.selling-explanation {
+    border-radius: 8px;
+    border: 1px solid #696969;
+    padding-left: 10px;
+}
+
+.close-selling-explanation,
+.close-selling-explanation:hover {
+    float: right;
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.selling-explanation-title {
+    display: inline-block;
+    text-decoration: underline;
+}
+
+.selling-explanation-content {
+    padding: 0px 10px 0px 10px;
+}
+
+.min-price-field-container {
+    text-align: center;
+    font-size: 42px;
+}
+
+#min-price-field {
+    width: 195px;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    text-align: center;
+    display: inline-block;
+}
+
+#min-price-field:focus {
+    outline-width: 0;
+}
+
+#sell-submit-button {
+    margin: 50px auto;
+    display: block;
+    width: 400px;
+    height: 70px;
+    font-size: 32px;
+}

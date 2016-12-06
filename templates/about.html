@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <title> Guestmealme, Buy and Sell Guestmeals </title>
+    {% include "partials/head.html" %}
+</head>
+
+<body>
+    <section class="navigation">
+        <div class="nav-container">
+            <a href="/">
+                <div class="navbar-brand">
+                    <img src="/public/img/guestmeal-logo.png" class="navbar-brand-logo">
+                    <h4 class="navbar-brand-name">Guestmeal me</h4>
+                </div>
+            </a>
+            <nav>
+                <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="/about">How it Works</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="auth0-login-button">Sign in</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <section class="home">
+        <video playsinline autoplay muted loop id="bgvid">
+            <source src="/public/mp4/background-video.mp4" type="video/mp4">
+        </video>
+
+        <div class="home-container">
+            <h1>How it works:</h1>
+            <h2>Buying</h2>
+            <p> sign in and click the big buy button 
+            </br>
+                that's the currently lowest price!
+            </br>
+                once you buy, you'll be connected with the selling to then meet up and exchange money and food!!</p>
+            <h2>Sellling</h2>
+            <p> sign in and enter the minimum price you are willing to sell your guest meal for
+            </br>
+                you won't receive anything less than that price!
+            </br>
+                once someone purchases your meal, you will be notified via email and you then set up a time with the buyer to exchange food and money!
+            </p>
+
+        </div>
+
+    </section>
+    
+</body>
+    <!-- AUTH FUNCTIONALITY JS -->
+    <script type="text/javascript">
+        // Preliminary version: Checking if the user is already logged in
+        var userLoggedIn = false;
+    </script>
+
+    <script src="https://cdn.auth0.com/js/lock/10.5/lock.min.js"></script>
+
+    <script>
+    var AUTH0_CLIENT_ID = '{{env.AUTH0_CLIENT_ID}}',
+        AUTH0_DOMAIN = '{{env.AUTH0_DOMAIN}}',
+        AUTH0_CALLBACK_URL = '{{env.AUTH0_CALLBACK_URL}}';
+    </script>
+    <script src="/public/js/auth0.js"></script>
+
+    <!-- UI RELATED JS -->
+    <script src="/public/js/buy-panel-ui.js"></script>
+</html>
