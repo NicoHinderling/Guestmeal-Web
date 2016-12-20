@@ -116,8 +116,9 @@ For personality matching, providers and consumers will arrange a time to eat tog
 % \subsubsection{Mentor Matching}
 
 \section{Auctions}
-Our application utilizes a Dutch(descending price) auction to sell guest meals. In a Dutch auction, items are introduced at a starting price and the price drops at set time intervals. The first person to bid will win and pay the current price. We start meals at (0 and drop the price linearly such that it will be priced at the seller’s minimum at the end of a day. Extensions for personality matching will use a blind second price auction. In this auction, participants submit bids
-without knowing what others submit. The bidder with the highest bid will win, but will pay the price of the second highest bidder.
+Our application utilizes a Dutch auction to sell guest meals. In a Dutch auction, items are introduced at a starting price and the price drops at set time intervals. The first person to bid will win and pay the current price. We chose this type of auction as it gave the simplest user experience. Sellers will either get an email that their meal expired at the end of the day or that someone bought their meal. Buyers do not have to wait until a timer expires to check who wins, but instead can just log on and decide whether they want to buy at the current price or not. Sealed first price, second price auctions and English auction would entail that everyone be present when bids are placed and wait for the winner to be announced. 
+
+In our application, meals put on the market are only available for the day. They start off at \$10 and the price drops until it hits the buyer's minimum valuation, at which point the meal expires and the next meal available on the market is put on sale. Other meals that have been put up in the market, but are awaiting to be put on sale, are also decreasing in value at the same time in the background. 
 
 \section{Technology}
 To implement this application, we are developing a web application. We are using a variety of technologies on both the front and back end to faciliatate user authentication, transaction payments, emailing, and auctioning. Our domain can be found at Guestmeal.me and is being hosted on Heroku, a free easy to use cloud-hosting service. \\
@@ -140,7 +141,7 @@ For users to use our app, they must create a login using their email and Auth0 w
 
 The first prototype of Guestmeal.me contains three pages: Buy, Sell, and Dashboard. The Buy page displays the price of the current meal available- this decreases throughout the day, following a Dutch auction format, and one meal is sold at a time. A buyer will simply click on a button if they wish to purchase the meal. The Sell page lets a user sell their meal by inputting the lowst price he or she is willing to sell it for and confirming with a click of a button. Once confirmed, the meal will be put out for sale. The Dashboard view will show past transaction by the user.
 
-The price of the meal is set to start at \$10 and slowly decreases throughout the day until it reaches the seller's minimum limit. If not sold by the end of the day 24-hour period since up for sale, it is taken off market and returned to the user. A Dutch auction style is used and the first person to make the transaction will be awarded the meal at that price. After a meal is sold, the next available meal is then put on auction and the process is then repeated. 
+As described earlier, our application utilizes a dutch auction that starts at \$10 and decreases throughout the day until it either expires or is bought. Our initial release allowed for meals to be on sale for 24 hours, however we found this to be a bit long. Other meals waiting to be put on sale would have to wait an extremely long time, so we will consider shortening this in future releases such that no one user can dominate the market for the day if his meal is not bought. 
 
 When a transaction occur, an automated email will be sent to the buyer and seller containg the contact info of the other party. The two parties will meet up in person and payments will be made in person. 
 
