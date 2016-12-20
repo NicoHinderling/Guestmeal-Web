@@ -115,6 +115,10 @@ For personality matching, providers and consumers will arrange a time to eat tog
 
 % \subsubsection{Mentor Matching}
 
+\section{Auctions}
+Our application utilizes a Dutch(descending price) auction to sell guest meals. In a Dutch auction, items are introduced at a starting price and the price drops at set time intervals. The first person to bid will win and pay the current price. We start meals at (0 and drop the price linearly such that it will be priced at the seller’s minimum at the end of a day. Extensions for personality matching will use a blind second price auction. In this auction, participants submit bids
+without knowing what others submit. The bidder with the highest bid will win, but will pay the price of the second highest bidder.
+
 \section{Technology}
 To implement this application, we are developing a web application. We are using a variety of technologies on both the front and back end to faciliatate user authentication, transaction payments, emailing, and auctioning. Our domain can be found at Guestmeal.me and is being hosted on Heroku, a free easy to use cloud-hosting service. \\
 
